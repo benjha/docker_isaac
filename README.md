@@ -44,7 +44,7 @@ oc project csc434
 https://docs.olcf.ornl.gov/services_and_applications/slate/image_building.html#build-types
 
 ```
-oc new-build https://github.com/benjha/docker_isaaci --follow  
+oc new-build https://github.com/benjha/docker_isaac 
 ```
 
 to verify available images, type
