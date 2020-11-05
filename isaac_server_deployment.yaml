@@ -18,7 +18,16 @@ spec:
         app: isaac-server
     spec:
       containers:
-      - image: image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac
+      - resources:
+           limits:
+              cpu: '8'
+              memory: 8Gi
+           requests:
+              cpu: '8'
+              memory: 8Gi
+        stdin: true  
+        image: image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac
         name: dockerisaac
+        args: 
         resources: {}
 status: {}

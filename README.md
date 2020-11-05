@@ -64,9 +64,15 @@ ubuntu         registry.apps.marble.ccs.ornl.gov/csc434/ubuntu         18.04    
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/workloads/deployment.html
 
-Create the Deployment specification, the modify it according to  your needs, e.g. configuring cpu and required memory.
+Create the Deployment specification, then modify it according to  your needs, e.g. configuring cpu and required memory.
 
 ```
-oc create deployment isaac-server --image image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac --dry-run -o yaml > deployment.yaml
+oc create deployment isaac-server --image image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac --dry-run -o yaml > issac_server_deployment.yaml
+```
+
+create the deployment from your YAML configuration
+
+```
+oc create -f isaac_server_deployment.yaml
 ```
 
