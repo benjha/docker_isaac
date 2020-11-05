@@ -68,21 +68,24 @@ RUN git clone -b dev https://github.com/ComputationalRadiationPhysics/isaac.git 
 
 # configuring webserver
 RUN mkdir /var/www/isaac
-WORKDIR /isaac/client
-RUN cp -r * /var/www/isaac
-
-#RUN echo "# Virtualenvwrapper configuration." >> /home/docker/.bashrc && \
-#    echo "export WORKON_HOME=\$HOME/.virtualenvs" >> /home/docker/.bashrc && \
-#    echo "export PROJECT_HOME=\$HOME/Devel" >> /home/docker/.bashrc && \
-#    echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/docker/.bashrc
+RUN cp -r /isaac/client/* /var/www/isaac
+RUN cd /isaac
+RUN wget https://raw.githubusercontent.com/benjha/docker_isaac/main/httpd.conf
+ADD httpd.conf /etc/httpd/conf/httpd.conf
+RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 
 
 ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 
 # websockets port
 EXPOSE 2459
-
 # simulation port
 EXPOSE 2460
+# webserver port
+EXPOSE 8080
 
-CMD ["isaac","--help"]
+WORKDIR /
+
+#RUN bash -c "httpd -DFOREGROUND  &" && sleep 2
+CMD ["httpd","-DFOREGROUND"]
+#CMD ["isaac","--help"]
