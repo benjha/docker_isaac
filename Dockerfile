@@ -87,4 +87,4 @@ WORKDIR /
 
 COPY run_webserver_isaac.sh /
 
-CMD ./run_webserver_isaac.sh
+#CMD ./run_webserver_isaac.sh

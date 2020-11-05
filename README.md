@@ -10,7 +10,7 @@ https://github.com/ComputationalRadiationPhysics/isaac
 https://docs.olcf.ornl.gov/services_and_applications/slate/overview.html#what-is-slate
  
 
-## Getting Started on Slate
+## Getting Started on SLATE
 
 - Request a Slate project allocation. Every GEN, DD, ALCC and INCITE project can request an allocation
 in Slate:
@@ -20,6 +20,10 @@ https://docs.olcf.ornl.gov/services_and_applications/slate/getting_started.html#
 - Logging-in and swapping projects
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/getting_started.html#logging-in
+
+- You can track changes using SLATE GUI available in
+
+https://console-openshift-console.apps.marble.ccs.ornl.gov/
 
 
 ## Instructions
@@ -40,8 +44,7 @@ oc project csc434
 https://docs.olcf.ornl.gov/services_and_applications/slate/image_building.html#build-types
 
 ```
-$oc new-build https://github.com/benjha/docker_isaaci --follow
-    
+oc new-build https://github.com/benjha/docker_isaaci --follow  
 ```
 
 to verify available images, type
@@ -50,7 +53,7 @@ to verify available images, type
 oc get imagestream
 ```
 
-then you will get
+this is a sample of the output
 
 ```
 NAME           IMAGE REPOSITORY                                        TAGS      UPDATED
@@ -64,15 +67,28 @@ ubuntu         registry.apps.marble.ccs.ornl.gov/csc434/ubuntu         18.04    
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/workloads/deployment.html
 
-Create the Deployment specification, then modify it according to  your needs, e.g. configuring cpu and required memory.
+Create the Deployment YAML specification, then customized as need it, e.g. configuring cpu and required memory, mounting ALPINE, etc.
 
 ```
 oc create deployment isaac-server --image image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac --dry-run -o yaml > issac_server_deployment.yaml
 ```
+
+a note about mounting ALPINE
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/access_olcf_resources/mount_fs.html
+
 
 create the deployment from your YAML configuration
 
 ```
 oc create -f isaac_server_deployment.yaml
 ```
+
+After creating a deployment, a POD will be spawned. Now, the next steps is to open communications in the POD so it can communicate with SUMMIT and the outside world.
+
+ISAAC server uses two services and its corresponding network policies for communication. First, SUMMIT - ISAAC server communication is enabled by NodePorts:
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/nodeport.html#slate-nodeports
+
+  
 
