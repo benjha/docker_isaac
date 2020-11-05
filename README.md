@@ -67,7 +67,7 @@ ubuntu         registry.apps.marble.ccs.ornl.gov/csc434/ubuntu         18.04    
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/workloads/deployment.html
 
-Create the Deployment YAML specification, then customized as need it, e.g. configuring cpu and required memory, mounting ALPINE, service ports, etc.
+Create the Deployment YAML specification, then customized as need it, e.g. configuring cpu and memory limits, exposing ports, mounting ALPINE, etc.
 
 ```
 oc create deployment isaac-server --image image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac --dry-run -o yaml > issac_server_deployment.yaml
@@ -84,7 +84,11 @@ create the deployment from your YAML configuration
 oc create -f isaac_server_deployment.yaml
 ```
 
-After creating a deployment, a POD will be spawned. Now, the next steps is to open communications in the POD so it can communicate with SUMMIT and the outside world.
+After creating a deployment, a POD will be spawned. 
+
+- Create a Service
+
+The next step is to open POD comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
 
 ISAAC server uses two services and its corresponding network policies for communication. First, SUMMIT - ISAAC server communication is enabled by NodePorts:
 
