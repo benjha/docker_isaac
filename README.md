@@ -35,21 +35,13 @@ oc login https://api.marble.ccs.ornl.gov
 oc project csc434
 ```
 
-- Build the Docker image
+- Build the Docker Image
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/image_building.html#build-types
 
-type
-
 ```
-$oc new-build https://github.com/benjha/docker_isaac
+$oc new-build https://github.com/benjha/docker_isaaci --follow
     
-```
-
-then
-
-```
-oc start-build dockerisaac --follow
 ```
 
 to verify available images, type
@@ -68,8 +60,13 @@ iperf3docker   registry.apps.marble.ccs.ornl.gov/csc434/iperf3docker   latest   
 ubuntu         registry.apps.marble.ccs.ornl.gov/csc434/ubuntu         18.04     8 days ago
 ``` 
 
-- Create a deployment
+- Create a Deployment
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/workloads/deployment.html
 
+Create the Deployment specification, the modify it according to  your needs, e.g. configuring cpu and required memory.
+
+```
+oc create deployment isaac-server --image image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac --dry-run -o yaml > deployment.yaml
+```
 

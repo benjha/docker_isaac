@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: isaac-server
+  name: isaac-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: isaac-server
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: isaac-server
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/csc434/dockerisaac
+        name: dockerisaac
+        resources: {}
+status: {}
