@@ -39,19 +39,37 @@ oc project csc434
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/image_building.html#build-types
 
+type
+
 ```
 $oc new-build https://github.com/benjha/docker_isaac
+    
+```
 
---> Found Docker image 7e6257c (2 months old) from Docker Hub for "centos:centos7"
+then
 
-    * An image stream tag will be created as "centos:centos7" that will track the source image
-    * A Docker build using source code from https://github.com/benjha/docker_isaac will be created
-      * The resulting image will be pushed to image stream tag "dockerisaac:latest"
-      * Every time "centos:centos7" changes a new build will be triggered
+```
+oc start-build dockerisaac --follow
+```
 
---> Creating resources with label build=dockerisaac ...
-    imagestream.image.openshift.io "centos" created
-    imagestream.image.openshift.io "dockerisaac" created
-    buildconfig.build.openshift.io "dockerisaac" created
---> Success
+to verify available images, type
+
+```
+oc get imagestream
+```
+
+then you will get
+
+```
+NAME           IMAGE REPOSITORY                                        TAGS      UPDATED
+centos         registry.apps.marble.ccs.ornl.gov/csc434/centos         centos7   19 minutes ago
+dockerisaac    registry.apps.marble.ccs.ornl.gov/csc434/dockerisaac    latest    2 minutes ago
+iperf3docker   registry.apps.marble.ccs.ornl.gov/csc434/iperf3docker   latest    8 days ago
+ubuntu         registry.apps.marble.ccs.ornl.gov/csc434/ubuntu         18.04     8 days ago
 ``` 
+
+- Create a deployment
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/workloads/deployment.html
+
+
