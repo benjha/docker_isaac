@@ -70,8 +70,7 @@ RUN git clone -b dev https://github.com/ComputationalRadiationPhysics/isaac.git 
 RUN mkdir /var/www/isaac
 RUN cp -r /isaac/client/* /var/www/isaac
 RUN cd /isaac
-RUN wget https://raw.githubusercontent.com/benjha/docker_isaac/main/httpd.conf
-ADD httpd.conf /etc/httpd/conf/httpd.conf
+COPY httpd.conf /etc/httpd/conf
 RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 
 
@@ -86,6 +85,6 @@ EXPOSE 8080
 
 WORKDIR /
 
-#RUN bash -c "httpd -DFOREGROUND  &" && sleep 2
-CMD ["httpd","-DFOREGROUND"]
-#CMD ["isaac","--help"]
+COPY run_webserver_isaac.sh /
+
+CMD ./run_webserver_isaac.sh
