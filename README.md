@@ -90,7 +90,7 @@ After creating a deployment, a POD will be spawned.
 
 The next step is to open POD's comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
 
-ISAAC-Server will two services:
+ISAAC-Server will use two services:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
 
