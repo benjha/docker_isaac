@@ -90,9 +90,22 @@ After creating a deployment, a POD will be spawned.
 
 The next step is to open POD comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
 
-ISAAC server uses two services and its corresponding network policies for communication. First, SUMMIT - ISAAC server communication is enabled by NodePorts:
+
+ISAAC server uses two services.
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
+
+First, a service is created to expose ports that will allow communication between SUMMIT and ISAAC Server. `isaac_server.yaml' provides service configuration 
+
+
+
+- Create Network Policies
+
+communications are enabled by NodePorts:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/nodeport.html#slate-nodeports
-
   
+and ISAAC Server - ISAAC Client communications are enabled by Routes:
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
 
