@@ -88,13 +88,13 @@ After creating a deployment, a POD will be spawned.
 
 - Create a Service
 
-The next step is to open POD comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
+The next step is to open POD's comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
 
-ISAAC-Server will use a service:
+ISAAC-Server will two services:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
 
-to allow communication between SUMMIT and ISAAC-Server, and between ISAAC-Server and ISAAC-Client. `isaac_server.yaml' provides service configuration 
+the first one, `isaac_server_sim_service.yaml`, is for communications between SUMMIT and ISAAC-Server, this service is of type `NodePort`. The second service, `isaac_server_webserver_service.yaml`, is for communications between ISAAC-Server and ISAAC-Client, no need to specify a type instead a Route is needed to expose HTTP/HTTPS communications.
 
 
 
