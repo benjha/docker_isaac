@@ -94,10 +94,24 @@ ISAAC-Server will use two services:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
 
-the first one, `isaac_server_sim_service.yaml`, is for communications between SUMMIT and ISAAC-Server, this service is of type `NodePort`. The second service, `isaac_server_webserver_service.yaml`, is for communications between ISAAC-Server and ISAAC-Client, no need to specify a type instead a Route is needed to expose HTTP/HTTPS communications.
+the first one, `isaac_server_sim_service.yaml`, is for communications between SUMMIT and ISAAC-Server, this service is of type `NodePort`. The second service, `isaac_server_webserver_service.yaml`, is for communications between ISAAC-Server and ISAAC-Client, no need to specify a type instead a Route is needed to expose HTTP/HTTPS communications. 
 
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
 
+Type
 
+```
+oc create -f isaac_server_sim_service.yaml
+oc create -f isaac_server_webserver_service.yaml
+```
+
+to create these services.
+
+- Create a Route
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
+
+ 
 - Create Network Policies
 
 communications are enabled by NodePorts:

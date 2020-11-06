@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: isaac-server-webserver
+  labels:
+    app: isaac-server
+    ccs.ornl.gov/externalRoute: 'true'
+  annotations:
+    ccs.ornl.gov/requireAuth: 'true'
+    openshift.io/host.generated: 'true'
+spec:
+  host: isaac.apps.marble.ccs.ornl.gov
+  to:
+    kind: Service
+    name: isaac-server-webserver
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: webserver-port
+  wildcardPolicy: None
