@@ -1,4 +1,4 @@
-# ISAAC server on SLATE
+# ISAAC-Server on SLATE
 
 - ISAAC
 
@@ -90,12 +90,11 @@ After creating a deployment, a POD will be spawned.
 
 The next step is to open POD comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
 
-
-ISAAC server uses two services.
+ISAAC-Server will use a service:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
 
-First, a service is created to expose ports that will allow communication between SUMMIT and ISAAC Server. `isaac_server.yaml' provides service configuration 
+to allow communication between SUMMIT and ISAAC-Server, and between ISAAC-Server and ISAAC-Client. `isaac_server.yaml' provides service configuration 
 
 
 
