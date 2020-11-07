@@ -12,7 +12,7 @@ RUN yum install -y epel-release
 RUN yum install -y  \
         ca-certificates git wget systemd httpd pciutils \
         vim curl git nasm \
-        boost-devel \
+        boost-devel openssl-devel \
         cmake3 cmake-gui net-tools
 RUN yum group install -y "Development Tools"
 RUN yum clean all
@@ -42,7 +42,7 @@ RUN git clone -b v4.0-stable https://github.com/benjha/libwebsockets.git &&\
     cd libwebsockets &&\
     mkdir .build &&\
     cd .build &&\
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DLWS_WITH_SSL=OFF .. &&\
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DLWS_WITH_SSL=ON .. &&\
     make -j4 install &&\
     cd .. &&\
     cd minimal-examples/http-server/minimal-http-server &&\
@@ -77,11 +77,11 @@ RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 
 # websockets port
-EXPOSE 2459
+# EXPOSE 2459
 # simulation port
-EXPOSE 2460
+# EXPOSE 2460
 # webserver port
-EXPOSE 8080
+# EXPOSE 8080
 
 WORKDIR /
 
