@@ -12,7 +12,7 @@ RUN yum install -y epel-release
 RUN yum install -y  \
         ca-certificates git wget systemd httpd pciutils \
         vim curl git nasm \
-        boost-devel openssl-devel \
+        boost-devel openssl-devel openssl \
         cmake3 cmake-gui net-tools
 RUN yum group install -y "Development Tools"
 RUN yum clean all
