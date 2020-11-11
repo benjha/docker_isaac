@@ -59,7 +59,7 @@ RUN git clone -b master https://github.com/libjpeg-turbo/libjpeg-turbo.git &&\
 
 
 # ISAAC server
-RUN git clone -b dev https://github.com/ComputationalRadiationPhysics/isaac.git &&\
+RUN git clone -b dev https://github.com/benjha/isaac.git &&\
     cd isaac &&\
     mkdir .build &&\
     cd .build &&\
