@@ -10,7 +10,7 @@ LABEL maintainer "Benjha"
 RUN yum -y update 
 RUN yum install -y epel-release 
 RUN yum install -y  \
-        ca-certificates git wget systemd httpd pciutils \
+        ca-certificates git wget systemd httpd pciutils htop \
         vim curl git nasm \
         boost-devel openssl-devel openssl \
         cmake3 cmake-gui net-tools
