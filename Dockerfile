@@ -85,7 +85,7 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 
 RUN mkdir work_dir
 RUN cd work_dir
-COPY run_webserver_isaac.sh .
+COPY run_webserver_isaac.sh /work_dir
 WORKDIR /work_dir
 
 CMD ["nohup","./run_webserver_isaac.sh &> isaac_server_webserver.log &"]
