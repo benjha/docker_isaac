@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: isaac-server-websocket
+  labels:
+    app: isaac-server
+    ccs.ornl.gov/externalRoute: 'true'
+spec:
+  path: /ws
+  host: isaac.apps.marble.ccs.ornl.gov
+  to:
+    kind: Service
+    name: isaac-server-webserver
+    weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: websockets-port
+  wildcardPolicy: None
