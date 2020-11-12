@@ -88,5 +88,5 @@ RUN cd work_dir
 COPY run_webserver_isaac.sh .
 WORKDIR /work_dir
 
-CMD nohup ./run_webserver_isaac.sh &> isaac_server_webserver.log &
+CMD ["nohup","./run_webserver_isaac.sh &> isaac_server_webserver.log &"]
 
