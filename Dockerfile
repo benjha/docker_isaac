@@ -77,14 +77,16 @@ RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 
 # websockets port
-EXPOSE 2459
+#EXPOSE 2459
 # simulation port
-EXPOSE 2460
+#EXPOSE 2460
 # webserver port
-EXPOSE 8080
+#EXPOSE 8080
 
-WORKDIR /
+RUN mkdir work_dir
+RUN cd work_dir
+COPY run_webserver_isaac.sh .
+WORKDIR /work_dir
 
-COPY run_webserver_isaac.sh /
+CMD nohup ./run_webserver_isaac.sh &> isaac_server_webserver.log &
 
-#CMD ./run_webserver_isaac.sh
