@@ -1,6 +1,6 @@
 #!/bin/bash
 
-httpd -DFOREGROUND  &
+httpd -DFOREGROUND &> webserver.log  &
 sleep 3
 
-isaac 
+isaac &> isaac.log

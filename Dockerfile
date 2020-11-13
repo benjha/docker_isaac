@@ -29,9 +29,6 @@ RUN alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 20 \
     --slave /usr/local/bin/ccmake ccmake /usr/bin/ccmake3 \
     --family cmake
 
-RUN mkdir deployment
-RUN cd deployment
-
 # jansson
 RUN git clone -b 2.11 https://github.com/akheron/jansson.git &&\
     cd jansson &&\
@@ -71,8 +68,8 @@ RUN git clone -b dev https://github.com/benjha/isaac.git &&\
 
 # configuring webserver
 RUN mkdir /var/www/isaac
-RUN cp -r /deployment/isaac/client/* /var/www/isaac
-RUN cd /deployment/isaac
+RUN cp -r /isaac/client/* /var/www/isaac
+RUN cd /isaac
 COPY httpd.conf /etc/httpd/conf
 RUN echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf
 
@@ -85,8 +82,9 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 # webserver port
 #EXPOSE 8080
 
-
+RUN mkdir /deployment
 COPY run_webserver_isaac.sh /deployment
 WORKDIR /deployment
+CMD ["nohup","./run_webserver_isaac.sh"]
 #CMD ["nohup","./run_webserver_isaac.sh &> isaac_server_webserver.log &"]
 
