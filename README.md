@@ -88,15 +88,15 @@ After creating a deployment, a POD will be spawned.
 
 - Create a Service
 
-The next step is to open POD's comunications so it can handle incoming/outgoing messages between SUMMIT and between the outside world.
-
-ISAAC-Server will use two services:
+To proxy traffic to a POD, services are needed:
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/services.html
 
-the first one, `isaac_server_sim_service.yaml`, is for communications between SUMMIT and ISAAC-Server, this service is of type `NodePort`. The second service, `isaac_server_webserver_service.yaml`, is for communications between ISAAC-Server and ISAAC-Client, no need to specify a type instead a Route is needed to expose HTTP/HTTPS communications. 
+ISAAC-Server and ISAAC-Client uses two services respectively:
 
-https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
+`isaac_server_sim_service.yaml`, is for traffic between SUMMIT and ISAAC-Server. This service is of type `NodePort` and uses a Network Policy.
+
+The second service, `isaac_server_webserver_service.yaml`, is used by ISAAC-Client and proxies traffic for HTTPS and Websockets. This services uses a Route.
 
 Type
 
@@ -107,18 +107,38 @@ oc create -f isaac_server_webserver_service.yaml
 
 to create these services.
 
-- Create a Route
+
+- Create a Network Policy for `isaac_server_sim_service.yaml` Service
+
+A network policy allows communication between PODs and other OLCF network points, in this case, Summit:
+
+https://docs.olcf.ornl.gov/services_and_applications/slate/networking/networkpolicy.html
+
+The network policy for `isaac_server_sim_service.yaml` is defined in `isaac_server_sim_net_policy.yml`. To initialize it, type:
+
+```
+oc create -f isaac_server_sim_net_policy.yml
+```
+
+- Create a Route for `isaac_server_webserver_service.yaml` Server
+
+The `isaac_server_webserver_service.yaml` service uses a Route: 
 
 https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
 
- 
-- Create Network Policies
+to expose HTTPS and Websockets communications to the outside world. Type
 
-communications are enabled by NodePorts:
+```
+oc create -f isaac_server_webserver_route.yaml
+```
 
-https://docs.olcf.ornl.gov/services_and_applications/slate/networking/nodeport.html#slate-nodeports
-  
-and ISAAC Server - ISAAC Client communications are enabled by Routes:
+to expose HTTPS communications  and
 
-https://docs.olcf.ornl.gov/services_and_applications/slate/networking/route.html
+```
+oc create -f isaac_server_websockets_route.yaml
+```
+
+to expose Websockets communicatios.
+
+
 

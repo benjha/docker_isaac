@@ -1,0 +1,12 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: isaac-server-incoming
+spec:
+  podSelector:
+    matchLabels:
+      app: isaac-server
+  ingress:
+    - {}
+  policyTypes:
+    - Ingress
