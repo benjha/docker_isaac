@@ -140,5 +140,13 @@ oc create -f isaac_server_websockets_route.yaml
 
 to expose Websockets communicatios.
 
+## Afterwards
 
+After deployment, ISAAC-Client is reachable at
+
+https://isaac.apps.marble.ccs.ornl.gov/
+
+ISAAC-Server - Websockets
+
+wss:// isaac.apps.marble.ccs.ornl.gov:443/ws
 
