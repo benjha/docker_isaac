@@ -144,9 +144,9 @@ to expose Websockets communicatios.
 
 After deployment, ISAAC-Client is reachable at
 
-https://isaac.apps.marble.ccs.ornl.gov/
+https://isaac.apps.marble.ccs.ornl.gov/html
 
 ISAAC-Server - Websockets
 
-wss:// isaac.apps.marble.ccs.ornl.gov:443/ws
+wss://isaac.apps.marble.ccs.ornl.gov:443/ws
 

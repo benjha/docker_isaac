@@ -85,6 +85,6 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 RUN mkdir /deployment
 COPY run_webserver_isaac.sh /deployment
 WORKDIR /deployment
-CMD ["nohup","./run_webserver_isaac.sh"]
+#CMD ["nohup","./run_webserver_isaac.sh"]
 #CMD ["nohup","./run_webserver_isaac.sh &> isaac_server_webserver.log &"]
 
