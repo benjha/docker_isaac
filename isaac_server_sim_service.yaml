@@ -6,7 +6,7 @@ metadata:
     app: isaac-server
 spec:
   selector:
-    name: isaac-server
+    app: isaac-server
   ports:
   - name: sim-port-service
     port: 2460
