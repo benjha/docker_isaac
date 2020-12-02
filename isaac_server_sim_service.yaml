@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: isaac-server-sim
   labels:
-    app: issac-server
+    app: isaac-server
 spec:
   selector:
     name: isaac-server
