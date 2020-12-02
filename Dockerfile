@@ -78,7 +78,7 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/lib:/lib64
 # websockets port
 #EXPOSE 2459
 # simulation port
-#EXPOSE 2460
+EXPOSE 2460
 # webserver port
 #EXPOSE 8080
 

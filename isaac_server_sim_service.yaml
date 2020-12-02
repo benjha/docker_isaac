@@ -2,12 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: isaac-server-sim
+  labels:
+    app: issac-server
 spec:
   selector:
     name: isaac-server
   ports:
-  - name: simulation-port
+  - name: sim-port-service
     port: 2460
     protocol: TCP
-    targetPort: 2460
+    targetPort: simulation-port
   type: NodePort 
